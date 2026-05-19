@@ -113,29 +113,29 @@ export default function App() {
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="https://i.postimg.cc/vHQGMHGx/hero-louvre.jpg" 
+              src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?q=80&w=3540&auto=format&fit=crop" 
               alt="Louvre Museum" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
               onError={(e) => {
-                // Fallback to a solid color if image fails
-                (e.target as HTMLImageElement).style.display = 'none';
+                // Fallback transparency if image fails
+                (e.target as HTMLImageElement).classList.add('opacity-0');
               }}
             />
             <div className="absolute inset-0 bg-louvre-dark/40 backdrop-blur-[2px]"></div>
           </div>
 
           <div className="z-10 text-louvre-cream">
-            <p className="text-louvre-cream uppercase tracking-[0.3em] text-[10px] font-bold mb-3">PRENOTAZIONE</p>
+            <p className="text-louvre-gold uppercase tracking-[0.3em] text-[10px] font-bold mb-3">PRENOTAZIONE</p>
             <h1 className="text-6xl font-serif leading-tight italic">Musée du Louvre</h1>
             <div className="w-16 h-[1px] bg-louvre-gold mt-6"></div>
           </div>
           
           <div className="z-10 text-louvre-cream">
-            <p className="text-lg text-louvre-cream leading-relaxed mb-10 font-serif italic max-w-sm">
+            <p className="text-lg text-louvre-cream/80 leading-relaxed mb-10 font-serif italic max-w-sm">
               "L'arte è un appello a cui troppi non rispondono."
             </p>
-            <div className="text-xs uppercase tracking-widest text-louvre-cream flex flex-col gap-4 font-bold">
+            <div className="text-xs uppercase tracking-widest text-louvre-gold flex flex-col gap-4 font-bold">
               <div className="flex items-center gap-3">
                 <Clock size={16} />
                 <span>LUN, MER, GIO, SAB, DOM: 9:00 – 18:00</span>
@@ -144,14 +144,14 @@ export default function App() {
                 <Clock size={16} />
                 <span>VENERDÌ: 9:00 – 21:45</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 opacity-40">
                 <AlertCircle size={16} />
                 <span>MARTEDÌ: CHIUSO</span>
               </div>
             </div>
           </div>
           
-          <div className="z-10 text-louvre-cream text-[10px] uppercase tracking-widest">
+          <div className="z-10 text-louvre-cream/40 text-[10px] uppercase tracking-widest">
             Louvre Pyramid, Paris
           </div>
         </div>
@@ -199,12 +199,11 @@ export default function App() {
                   <div className="grid grid-cols-2 gap-10">
                     {/* Ticket Count */}
                     <div>
-                      <label className="block text-[10px] uppercase tracking-widest text-louvre-gold mb-1 font-black">N. Biglietti (MAX 10)</label>
+                      <label className="block text-[10px] uppercase tracking-widest text-louvre-gold mb-1 font-black">N. Biglietti</label>
                       <input 
                         id="tickets_count"
                         type="number" 
                         min="1" 
-                        max="15" 
                         className="w-full bg-transparent border-b border-louvre-gold/40 py-3 focus:outline-none focus:border-louvre-gold transition-all font-serif italic text-xl"
                         value={booking.tickets}
                         onChange={(e) => setBooking({ ...booking, tickets: parseInt(e.target.value) || 0 })}
